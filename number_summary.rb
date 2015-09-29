@@ -67,26 +67,19 @@ class NumberSummary
 			end
 
 			def mode(array)
-				n = 0
-				median_array = Array.new
-				for i in (0..array.length - 1) do
-					median_array[i] = array[i].to_f
-				end
-				sorted = int_array.sort
-				print sorted
+				sorted = strings_to_ints(array).sort
 				mode_array = Array.new
-				index.to_f = 0
+
 				for i in (0..sorted.length)
-					index = sorted[i].index
-					print index
-					if((sorted[index] == sorted[index-1]))
-						mode_array.push(sorted[index])
-						print "running"
+					if((sorted[i] == sorted[i-1]))
+						mode_array.push(sorted[i])
 					end
 				end
-				print mode_array
+				puts "Mode(s): " "#{mode_array}"
 
 			end
+
+
 			private
 
 			def strings_to_ints(array)

@@ -14,6 +14,6 @@ print NumberSummary.mean(num_array), "\n"
 print NumberSummary.median(num_array), "\n"
 print NumberSummary.q_one(num_array), "\n"
 print NumberSummary.q_three(num_array), "\n"
-# print NumberSummary.mode(num_array), "\n"
+print NumberSummary.mode(num_array), "\n"
 end
 # puts NumberSummary.summarize('data.csv')
