@@ -33,12 +33,7 @@ class NumberSummary
 
 			def median(array)
 				sorted = strings_to_ints(array).sort
-					if (even_length(sorted))
-						median = ((half_array_length(sorted) + half_array_length_minus_one(sorted))/2)
-						# median = (sorted[(sorted.length/2)].to_f + sorted[(sorted.length/2)-1].to_f).to_f/2
-					else 
-						median = half_array_length(sorted)
-					end
+					median = find_median(sorted)
 					median = median.round(1)
 					puts "Median value is: #{median}"
 				end
@@ -48,11 +43,7 @@ class NumberSummary
 					if (even_length(sorted))
 						q1 = Array.new
 						q1 = sorted[0..(sorted.length/2)-1]
-						if (even_length(q1))
-							median = ((half_array_length(q1) + half_array_length_minus_one(q1))/2)
-						else 
-							median = half_array_length(q1)
-						end
+						median = find_median(q1)
 					else 
 						q1 = Array.new
 						q1 = sorted[0..(sorted.length/2)-1]
@@ -66,11 +57,7 @@ class NumberSummary
 					if (even_length(sorted))
 						q3 = Array.new
 						q3 = sorted[((sorted.length/2)+1)..sorted.length]
-						if (even_length(q3))
-							median = ((half_array_length(q3) + half_array_length_minus_one(q3))/2)
-						else 
-							median = half_array_length(q3)
-						end
+						median = find_median(q3)
 					else 
 						q3 = Array.new
 						q3 = sorted[((sorted.length/2)+1)..sorted.length]
@@ -96,12 +83,6 @@ class NumberSummary
 						mode_array.push(sorted[index])
 						print "running"
 					end
-					# if(i == n)
-					# 	mode_array.push(n)
-					# 	print n
-					# 	print "running"
-					# end
-					# n = i
 				end
 				print mode_array
 
@@ -126,6 +107,15 @@ class NumberSummary
 
 			def half_array_length_minus_one(array)
 				return array[((array.length/2)-1)]
+			end
+
+			def find_median(array)
+				if (even_length(array))
+					median = ((half_array_length(array) + half_array_length_minus_one(array))/2)
+				else 
+					median = half_array_length(array)
+				end
+				return median
 			end
 
 
