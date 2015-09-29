@@ -19,7 +19,6 @@ class NumberSummary
 			end
 
 			def mean(array)
-
 				total = 0
 				i = 0
 				for i in (0..array.length) do
@@ -27,7 +26,8 @@ class NumberSummary
 				end
 
 				final = total/array.length
-				final = final.round(2)
+				final = final.round(1)
+
 				puts "Mean Value is: #{final}"
 			end
 
@@ -76,11 +76,36 @@ class NumberSummary
 					end
 				end
 				puts "Mode(s): " "#{mode_array}"
+			end
 
+			def sigma(array)
+				mean = mean_sigma(array).to_f
+				new_array = strings_to_ints(array)
+				sigma = 0
+				for i in (0..array.length)
+					sigma += (((new_array[i].to_f - mean)**2))
+				end
+				sigma = sigma / array.length
+				final = Math.sqrt(sigma)
+				final = final.round(1)
+				puts "The standard deviation is:" "#{final}"
 			end
 
 
 			private
+
+			def mean_sigma(array)
+				total = 0
+				i = 0
+				for i in (0..array.length) do
+					total += array[i].to_f
+				end
+
+				final = total/array.length
+				final = final.round(2)
+
+				return final
+			end
 
 			def strings_to_ints(array)
 				int_array = Array.new

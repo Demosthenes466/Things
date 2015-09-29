@@ -7,7 +7,8 @@ file = File.open("data.csv", 'r')
 			num_array = line.split(",")
 			# print num_array 
 			puts
-
+print "Number Summary", "\n" 
+print "==============""\n"
 print NumberSummary.min(num_array), "\n"
 print NumberSummary.max(num_array), "\n"
 print NumberSummary.mean(num_array), "\n"
@@ -15,5 +16,6 @@ print NumberSummary.median(num_array), "\n"
 print NumberSummary.q_one(num_array), "\n"
 print NumberSummary.q_three(num_array), "\n"
 print NumberSummary.mode(num_array), "\n"
+print NumberSummary.sigma(num_array), "\n"
 end
 # puts NumberSummary.summarize('data.csv')
