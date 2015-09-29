@@ -13,11 +13,7 @@ class NumberSummary
 			end
 
 			def min(array)
-				new_array = Array.new
-				for i in (0..array.length) do
-					new_array[i] = array[i].to_f
-				end
-				puts array
+				new_array = strings_to_ints(array)
 				min = new_array.min()
 				puts "Minimum value is: #{min}"
 			end
@@ -36,70 +32,48 @@ class NumberSummary
 			end
 
 			def median(array)
-				# new_array = Array.new
-				median_array = Array.new
-				for i in (0..array.length - 1) do
-					median_array[i] = array[i].to_f
-				end
-				sorted = median_array.sort
-					if ((sorted.length)% 2 == 0)
-						median = (sorted[(sorted.length/2)].to_f + sorted[(sorted.length/2)-1].to_f).to_f/2
+				sorted = strings_to_ints(array).sort
+					if (even_length(sorted))
+						median = ((half_array_length(sorted) + half_array_length_minus_one(sorted))/2)
+						# median = (sorted[(sorted.length/2)].to_f + sorted[(sorted.length/2)-1].to_f).to_f/2
 					else 
-						median = sorted[(sorted.length/2).to_i]
+						median = half_array_length(sorted)
 					end
 					median = median.round(1)
 					puts "Median value is: #{median}"
 				end
 
 			def q_one(array)
-				median_array = Array.new
-				for i in (0..array.length - 1) do
-					median_array[i] = array[i].to_f
-				end
-				sorted = median_array.sort
-					if ((sorted.length)% 2 == 0)
+				sorted = strings_to_ints(array)
+					if (even_length(sorted))
 						q1 = Array.new
 						q1 = sorted[0..(sorted.length/2)-1]
-						if ((q1.length)% 2 == 0)
-							median = (q1[(q1.length/2)].to_f + q1[(q1.length/2)-1].to_f).to_f/2
+						if (even_length(q1))
+							median = ((half_array_length(q1) + half_array_length_minus_one(q1))/2)
 						else 
-							median = q1[(q1.length/2).to_i]
+							median = half_array_length(q1)
 						end
 					else 
 						q1 = Array.new
 						q1 = sorted[0..(sorted.length/2)-1]
-					if ((q1.length)% 2 == 0)
-							median = (q1[(q1.length/2)].to_f + q1[(q1.length/2)-1].to_f).to_f/2
-						else 
-							median = q1[(q1.length/2).to_i]
-						end
 					end
 					median = median.round(1)
 					puts "Quartile 1 is:" "#{median}"
 			end
 
 			def q_three(array)
-				median_array = Array.new
-				for i in (0..array.length - 1) do
-					median_array[i] = array[i].to_f
-				end
-				sorted = median_array.sort
-					if ((sorted.length)% 2 == 0)
-						q1 = Array.new
-						q1 = sorted[((sorted.length/2)+1)..sorted.length]
-						if ((q1.length)% 2 == 0)
-							median = (q1[(q1.length/2)].to_f + q1[(q1.length/2)-1].to_f).to_f/2
+				sorted = strings_to_ints(array).sort
+					if (even_length(sorted))
+						q3 = Array.new
+						q3 = sorted[((sorted.length/2)+1)..sorted.length]
+						if (even_length(q3))
+							median = ((half_array_length(q3) + half_array_length_minus_one(q3))/2)
 						else 
-							median = q1[(q1.length/2).to_i]
+							median = half_array_length(q3)
 						end
 					else 
-						q1 = Array.new
-						q1 = sorted[((sorted.length/2)+1)..sorted.length]
-					if ((q1.length)% 2 == 0)
-							median = (q1[(q1.length/2)].to_f + q1[(q1.length/2)-1].to_f).to_f/2
-						else 
-							median = q1[(q1.length/2).to_i]
-						end
+						q3 = Array.new
+						q3 = sorted[((sorted.length/2)+1)..sorted.length]
 					end
 					median = median.round(1)
 					puts "Quartile 3 is:" "#{median}"
@@ -111,7 +85,7 @@ class NumberSummary
 				for i in (0..array.length - 1) do
 					median_array[i] = array[i].to_f
 				end
-				sorted = median_array.sort
+				sorted = int_array.sort
 				print sorted
 				mode_array = Array.new
 				index.to_f = 0
@@ -132,5 +106,29 @@ class NumberSummary
 				print mode_array
 
 			end
+			private
+
+			def strings_to_ints(array)
+				int_array = Array.new
+				for i in (0..array.length - 1) do
+					int_array[i] = array[i].to_f
+				end
+				return int_array
+			end
+
+			def even_length(array)
+				array.length % 2 == 0
+			end
+
+			def half_array_length(array)
+				return array[(array.length/2)]
+			end
+
+			def half_array_length_minus_one(array)
+				return array[((array.length/2)-1)]
+			end
+
+
+	
 	end
 end
